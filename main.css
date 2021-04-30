@@ -1,0 +1,83 @@
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 14px;
+    color: rgba(40, 65, 108, 1);
+    background-color: rgba(255, 231, 207, 1);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button {
+    background-color: rgba(40, 65, 108, 1);
+    color: white;
+    border: none;
+    padding: 10px;
+    text-transform: uppercase;
+    border-radius: 5px;
+}
+
+.loading-screen {
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(255, 231, 207, 1);
+    position: fixed;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+#loading-text {
+    color: #831F1F;
+    font-size: 30px;
+}
+
+#loading-gif {
+    border-radius: 10%;
+}
+
+.background {
+    width: 100%;
+    position: fixed;
+    z-index: -5;
+}
+
+.display-box {
+    background-color: rgba(231, 227, 218, 0.75);
+    border: 2px solid rgba(40, 65, 108, 1);
+    padding: 20px;
+    height: 600px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#start-menu > button {
+    font-size: 30px;
+    margin: 10px;
+    padding: 10px 20px;
+}
+
+.account-select {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+#logout-button {
+    display: none;
+}
+
+
+
+/* #background-image {
+    border: 3px solid rgba(40, 65, 108, 1);
+    border-radius: 15px;
+} */
