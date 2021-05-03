@@ -75,8 +75,13 @@ button {
     display: none;
 }
 
+.bad-input {
+    border: 2px solid red;
+}
 
-
+.input-error {
+    color: red;
+}
 /* #background-image {
     border: 3px solid rgba(40, 65, 108, 1);
     border-radius: 15px;

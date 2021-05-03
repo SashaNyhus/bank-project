@@ -4,7 +4,7 @@ export async function postNewUser(){
     let newAccountData = document.getElementById("account-creation-form");
     newAccountData = convertFormToJSON(newAccountData);
     await postRequest("accounts", newAccountData)
-    .then(res => (console.log("successfully created new account: " + res)))
+    .then(() => (console.log("successfully created new account")))
     .catch(err => (console.log("problem creating new account: " + err)))
 }
 
