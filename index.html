@@ -20,7 +20,7 @@
                 <button id="goto-account-login">Log In</button>
             </div>
             <div class="account-select" id="account-creation">
-                <form action="http://localhost:5000/api/accounts" method="POST" target="_blank">
+                <form id="account-creation-form" onsubmit="return window.createNewUser();">
                     <label for="new-account-name">Name:</label>
                     <input type="text" name="user" id="new-account-name">
                     <span class="input-error" id="new-account-name-error">cannot be blank!</span>
@@ -30,17 +30,22 @@
                     <span class="input-error" id="new-account-description-error"></span>
                     <br>
                     <label for="new-account-currency">Currency:</label>
-                    <input type="text" name="currency" id="new-account-currency">
+                    <select name="currency" id="new-account-currency">
+                        <option value="$">$</option>
+                        <option value="€">€</option>
+                        <option value="¥">¥</option>
+                        <option value="£">£</option>
+                    </select>
                     <span class="input-error" id="new-account-currency-error"></span>
                     <br>
                     <label for="new-account-balance">Starting Balance:</label>
                     <input type="number" name="balance" id="new-account-balance">
                     <span class="input-error" id="new-account-balance-error"></span>
                     <br>
-                    <button id="new-account-submit">Create Account</button>
+                    <button type="submit" id="new-account-submit">Create Account</button>
+                    <button type="reset">Clear Form</button>
+                    <button type="button" id="account-creation-exit">Back</button>
                 </form>
-                <br>
-                <button id="account-creation-exit">Back</button>
             </div>
             <div class="account-select" id="account-login">
                 <label for="account-login-name">Name on the Account:</label>

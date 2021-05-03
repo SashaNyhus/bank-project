@@ -1,38 +1,20 @@
 
-//start-menu
+import {gotoAccountCreation, gotoAccountLogin, exitAccountCreation, exitAccountLogin} from "./menu-buttons.js";
+import {postNewUser} from "./api-requests.js"
+
+//start-menu event listeners
 document.getElementById("goto-account-creation").addEventListener("click", gotoAccountCreation);
 document.getElementById("goto-account-login").addEventListener("click", gotoAccountLogin);
 
-//account-creation
+//account-creation event listeners
 document.getElementById("account-creation-exit").addEventListener("click", exitAccountCreation);
 
-//login
+//login event listeners
 document.getElementById("exit-account-login").addEventListener("click", exitAccountLogin)
 
-function gotoAccountCreation(){
-    hideMenu("start-menu");
-    showFlexMenu("account-creation")
+//submit functions
+async function createNewUser(){
+    postNewUser();
 }
 
-function gotoAccountLogin(){
-    hideMenu("start-menu");
-    showFlexMenu("account-login")
-}
-
-function exitAccountCreation(){
-    hideMenu("account-creation")
-    showFlexMenu("start-menu")
-}
-
-function exitAccountLogin(){
-    hideMenu("account-login");
-    showFlexMenu("start-menu")
-}
-
-function hideMenu(id){
-    document.getElementById(id).style.display="none"
-}
-
-function showFlexMenu(id){
-    document.getElementById(id).style.display="flex"
-}
+window.createNewUser = createNewUser
