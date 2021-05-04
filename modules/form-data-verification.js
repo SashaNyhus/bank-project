@@ -36,6 +36,52 @@ export function checkNewAccountName(){
     }
 }
 
+export function checkNewAccountDescription(){
+    let badInput = false;
+    let inputErrors = [];
+    let field = document.getElementById("new-account-description")
+    let input = field.value;
+    if (input === ""){
+        badInput = true;
+        inputErrors.push("Description cannot be blank.")
+    }
+    if(badInput){
+        displayInputErrors(field, "new-account-description-error", inputErrors);
+        return;
+    }
+    else {
+        hideInputErrors(field, "new-account-description-error");
+        return;
+    }
+}
+
+export function checkNewAccountBalance(){
+    let badInput = false;
+    let inputErrors = [];
+    let field = document.getElementById("new-account-balance")
+    let input = field.value;
+    if (input === ""){
+        badInput = true;
+        inputErrors.push("Account balance cannot be blank.")
+    }
+    if(isNaN(input)){
+        badInput = true;
+        inputErrors.push("Account balance must be a number.")
+    }
+    if(input < 50){
+        badInput = true;
+        inputErrors.push("Starting balance must be at least 50")
+    }
+    if(badInput){
+        displayInputErrors(field, "new-account-balance-error", inputErrors);
+        return;
+    }
+    else {
+        hideInputErrors(field, "new-account-balance-error");
+        return;
+    }
+}
+
 function displayInputErrors(element, displayAreaID, errorArray){
     element.classList.add("bad-input");
     document.getElementById(displayAreaID).innerText = errorArray.join(" ");

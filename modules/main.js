@@ -1,7 +1,7 @@
 
-import {gotoAccountCreation, gotoAccountLogin, exitAccountCreation, exitAccountLogin, gotoTransactionsPage, loadingScreen} from "./menu-buttons.js";
-import {formHasBadInput, checkNewAccountName} from "./form-data-verification.js"
-import {postNewUser} from "./api-requests.js"
+import {gotoAccountCreation, gotoAccountLogin, exitAccountCreation, exitAccountLogin, gotoTransactionsPage, gotoNewTransactionsPage, loadingScreen} from "./menu-buttons.js";
+import {formHasBadInput, checkNewAccountName, checkNewAccountDescription, checkNewAccountBalance} from "./form-data-verification.js"
+import {postNewUser, postNewTransaction} from "./api-requests.js"
 
 
 //start-menu event listeners
@@ -10,11 +10,16 @@ document.getElementById("goto-account-login").addEventListener("click", gotoAcco
 
 //account-creation event listeners
 document.getElementById("new-account-name").addEventListener("blur", checkNewAccountName);
+document.getElementById("new-account-description").addEventListener("blur", checkNewAccountDescription);
+document.getElementById("new-account-balance").addEventListener("blur", checkNewAccountBalance);
 document.getElementById("account-creation-exit").addEventListener("click", exitAccountCreation);
 
 //login event listeners
-document.getElementById("account-login-submit").addEventListener("click", loginExistingAccount)
-document.getElementById("exit-account-login").addEventListener("click", exitAccountLogin)
+document.getElementById("account-login-submit").addEventListener("click", loginExistingAccount);
+document.getElementById("exit-account-login").addEventListener("click", exitAccountLogin);
+
+//transactions listeners
+document.getElementById("goto-new-transactions-page").addEventListener("click", gotoNewTransactionsPage)
 
 //submit functions
 async function createNewUser(){
@@ -42,12 +47,22 @@ async function loginExistingAccount(){
     await gotoTransactionsPage(userName);
     return;
 }
-
 function displayNewAccountCreationError(errorText){
     document.getElementById("new-account-creation-error").innerText = errorText;
     return;
  }
 
+async function logNewTransaction(){
+    let currentUser = document.getElementById("account-header").innerText
+    event.preventDefault();
+    if(formHasBadInput("transaction-entry-form")){
+        return;
+    }
+    loadingScreen(true, "Logging transaction");
+    await postNewTransaction();
+    gotoTransactionsPage(currentUser);
+    return;
+}
 
-
-window.createNewUser = createNewUser
+window.createNewUser = createNewUser;
+window.logNewTransaction = logNewTransaction;

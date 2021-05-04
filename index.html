@@ -26,7 +26,7 @@
                     <span class="input-error" id="new-account-name-error"></span>
                     <br>
                     <label for="new-account-description">Description:</label>
-                    <input type="text" name="description" id="new-account-description">
+                    <textarea name="description" id="new-account-description"></textarea>
                     <span class="input-error" id="new-account-description-error"></span>
                     <br>
                     <label for="new-account-currency">Currency:</label>
@@ -69,7 +69,24 @@
                 <button id="goto-new-transactions-page">Record new transaction</button>
                 <button id="logout-button">Log Out</button>
             </div>
-            
+            <div id="new-transactions-page">
+                <form id="transaction-entry-form" onsubmit="return window.logNewTransaction();">
+                    <label for="transaction-date">Date of transaction:</label> 
+                    <input type="datetime-local" name="date" id="transaction-date">
+                    <span class="input-error" id="transaction-date-error"></span>
+                    <br>
+                    <label for="transaction-object">Object of transaction:</label>
+                    <input type="text" name="object" id="transaction-object">
+                    <span class="input-error" id="transaction-object-error"></span>
+                    <br>
+                    <label for="transaction-amount">Amount of transaction</label>
+                    <input type="number" name="amount" id="transaction-amount">
+                    <span class="input-error" id="transaction-amount-error"></span>
+                    <button type="submit" id="new-transaction-submit">Submit</button>
+                    <button type="reset">Clear Form</button>
+                    <button type="button" id="new-transaction-exit">Back</button>
+                </form>
+            </div>
         </div>
     </body>
 </html>

@@ -76,6 +76,11 @@ button {
     flex-direction: column;
 }
 
+#new-transactions-page {
+    display: none;
+    flex-direction: column;
+}
+
 .bad-input {
     border: 2px solid red;
 }

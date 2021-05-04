@@ -26,13 +26,18 @@ export async function gotoTransactionsPage(user){
     for(let transaction of currentUserData.transactions){
         createTableRow(transaction)
     }
-    document.getElementById("account-header").innerText = `Welcome, ${user}!`;
+    document.getElementById("account-header").innerText = user;
     document.getElementById("description-display").innerText = `This account is for ${currentUserData.description}. The current balance is ${currentUserData.currency}${currentUserData.balance}.`
     hideMenu("account-login");
     hideMenu("account-creation");
     showFlexMenu("transactions-page")
     loadingScreen(false, "");
     return;
+}
+
+export function gotoNewTransactionsPage(){
+    hideMenu("transactions-page");
+    showFlexMenu("new-transactions-page");
 }
 
 export function loadingScreen(loading, reason){

@@ -24,6 +24,21 @@ export async function getUserData(user){
     return userData;
 }
 
+//in progress
+export async function postNewTransaction(){
+    let currentAccount = document.getElementById("account-header").innerText
+    let newTransactionData = document.getElementById("transaction-entry-form");
+    newTransactionData = convertFormToJSON(newTransactionData);
+    let res = await postRequest((currentAccount + "/transactions"), newTransactionData);
+    if(res.status === 201){
+        console.log("success");
+    }
+    else {
+        console.log("An error occured: " + res.status + " : " + res.statusText)
+    }
+    return res.status;
+}
+
 function convertFormToJSON(form){
     let formData = new FormData(form);
     let objectData = Object.fromEntries(formData);
