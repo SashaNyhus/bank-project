@@ -29,7 +29,9 @@ export async function postNewTransaction(){
     let currentAccount = document.getElementById("account-header").innerText
     let newTransactionData = document.getElementById("transaction-entry-form");
     newTransactionData = convertFormToJSON(newTransactionData);
-    let res = await postRequest((currentAccount + "/transactions"), newTransactionData);
+    let requestEndpoint = "accounts/" + currentAccount + "/transactions";
+    console.log(requestEndpoint)
+    let res = await postRequest(requestEndpoint, newTransactionData);
     if(res.status === 201){
         console.log("success");
     }
