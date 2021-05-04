@@ -18,7 +18,7 @@ button {
     border-radius: 5px;
 }
 
-.loading-screen {
+#loading-screen {
     height: 100vh;
     width: 100%;
     background-color: rgba(255, 231, 207, 1);
@@ -81,6 +81,7 @@ button {
 
 .input-error {
     color: red;
+    position: absolute;
 }
 /* #background-image {
     border: 3px solid rgba(40, 65, 108, 1);

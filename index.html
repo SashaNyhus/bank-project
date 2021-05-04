@@ -6,7 +6,7 @@
         <script type="module" src="modules/main.js"></script>
     </head>
     <body>
-        <div class="loading-screen">
+        <div id="loading-screen">
             <p id="loading-text">Loading</p>
             <img id="loading-gif" src="images/loading-screen.gif" alt="loading gif">
         </div>
@@ -23,7 +23,7 @@
                 <form id="account-creation-form" onsubmit="return window.createNewUser();">
                     <label for="new-account-name">Name:</label>
                     <input type="text" name="user" id="new-account-name">
-                    <span class="input-error" id="new-account-name-error">cannot be blank!</span>
+                    <span class="input-error" id="new-account-name-error"></span>
                     <br>
                     <label for="new-account-description">Description:</label>
                     <input type="text" name="description" id="new-account-description">
@@ -45,6 +45,7 @@
                     <button type="submit" id="new-account-submit">Create Account</button>
                     <button type="reset">Clear Form</button>
                     <button type="button" id="account-creation-exit">Back</button>
+                    <p class="input-error" id="new-account-creation-error"></p>
                 </form>
             </div>
             <div class="account-select" id="account-login">

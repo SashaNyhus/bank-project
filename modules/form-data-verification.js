@@ -1,3 +1,15 @@
+export function formHasBadInput(formID){
+    let badInput = false;
+    let formElements = document.getElementById(formID).children;
+    for (let element of formElements){
+        if(element.classList.contains("bad-input")){
+            badInput = true;
+        }
+    }
+    return badInput;
+}
+
+
 export function checkNewAccountName(){
     let badInput = false;
     let inputErrors = [];

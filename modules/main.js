@@ -1,6 +1,6 @@
 
-import {gotoAccountCreation, gotoAccountLogin, exitAccountCreation, exitAccountLogin} from "./menu-buttons.js";
-import {checkNewAccountName} from "./form-data-verification.js"
+import {gotoAccountCreation, gotoAccountLogin, exitAccountCreation, exitAccountLogin, gotoTransactionsPage, loadingScreen} from "./menu-buttons.js";
+import {formHasBadInput, checkNewAccountName} from "./form-data-verification.js"
 import {postNewUser} from "./api-requests.js"
 
 //start-menu event listeners
@@ -17,7 +17,30 @@ document.getElementById("exit-account-login").addEventListener("click", exitAcco
 //submit functions
 async function createNewUser(){
     event.preventDefault();
-    postNewUser();
+    if(formHasBadInput("account-creation-form")){
+        displayNewAccountCreationError("You must fill all fields correctly.")
+        return;
+    }
+    let newUserName = document.getElementById("new-account-name").value;
+    loadingScreen(true, "Creating new account")
+    let response = await postNewUser();
+    loadingScreen(false, "");
+    if(response === 201){
+        gotoTransactionsPage(newUserName);
+    }
+    else if(response === 409){
+        displayNewAccountCreationError(`An account for ${newUserName} already exists. Please enter a different user name, or return to the main menu to log in.`)
+    }
+    else {
+        displayNewAccountCreationError("An unknown error occurred. See the console for more details.")
+    }
 }
+
+ function displayNewAccountCreationError(errorText){
+    document.getElementById("new-account-creation-error").innerText = errorText;
+    return;
+ }
+
+
 
 window.createNewUser = createNewUser

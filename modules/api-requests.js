@@ -3,9 +3,17 @@ const API_URL = new URL("http://localhost:5000/api/");
 export async function postNewUser(){
     let newAccountData = document.getElementById("account-creation-form");
     newAccountData = convertFormToJSON(newAccountData);
-    await postRequest("accounts", newAccountData)
-    .then(() => (console.log("successfully created new account")))
-    .catch(err => (console.log("problem creating new account: " + err)))
+    let res = await postRequest("accounts", newAccountData);
+    if(res.status === 201){
+        console.log("Account successfully created");
+    }
+    else if(res.status === 409){
+        console.log("Error - account with that name already exists")
+    }
+    else {
+        console.log("An error occured in account creation: " + res.status + " : " + res.statusText)
+    }
+    return res.status;
 }
 
 function convertFormToJSON(form){
