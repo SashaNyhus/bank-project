@@ -9,7 +9,6 @@ export function formHasBadInput(formID){
     return badInput;
 }
 
-
 export function checkNewAccountName(){
     let badInput = false;
     let inputErrors = [];
@@ -48,5 +47,6 @@ function hideInputErrors(element, displayAreaID){
 }
 
 function containsNoSpecialCharacters(string){
-    return string.match("^[A-Za-z0-9]+$")
+    let regex = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g;
+    return !(regex.test(string));
 }

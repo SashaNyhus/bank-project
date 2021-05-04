@@ -3,6 +3,7 @@ import {gotoAccountCreation, gotoAccountLogin, exitAccountCreation, exitAccountL
 import {formHasBadInput, checkNewAccountName} from "./form-data-verification.js"
 import {postNewUser} from "./api-requests.js"
 
+
 //start-menu event listeners
 document.getElementById("goto-account-creation").addEventListener("click", gotoAccountCreation);
 document.getElementById("goto-account-login").addEventListener("click", gotoAccountLogin);
@@ -12,6 +13,7 @@ document.getElementById("new-account-name").addEventListener("blur", checkNewAcc
 document.getElementById("account-creation-exit").addEventListener("click", exitAccountCreation);
 
 //login event listeners
+document.getElementById("account-login-submit").addEventListener("click", loginExistingAccount)
 document.getElementById("exit-account-login").addEventListener("click", exitAccountLogin)
 
 //submit functions
@@ -35,8 +37,13 @@ async function createNewUser(){
         displayNewAccountCreationError("An unknown error occurred. See the console for more details.")
     }
 }
+async function loginExistingAccount(){
+    let userName = document.getElementById("account-login-name").value;
+    await gotoTransactionsPage(userName);
+    return;
+}
 
- function displayNewAccountCreationError(errorText){
+function displayNewAccountCreationError(errorText){
     document.getElementById("new-account-creation-error").innerText = errorText;
     return;
  }

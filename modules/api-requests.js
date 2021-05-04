@@ -16,6 +16,14 @@ export async function postNewUser(){
     return res.status;
 }
 
+export async function getUserData(user){
+    console.log(typeof(user))
+    let userData = await getRequest(`accounts/${user}`)
+    userData = await userData.json();
+    console.log(userData);
+    return userData;
+}
+
 function convertFormToJSON(form){
     let formData = new FormData(form);
     let objectData = Object.fromEntries(formData);
@@ -36,4 +44,16 @@ async function postRequest(endpoint, body){
     });
     console.log(response);
     return response;
+}
+
+async function getRequest(endpoint){
+    let url = new URL(endpoint, API_URL);
+    console.log(url)
+    let fetchedData = await fetch(url, {
+        "method": "GET",
+        headers: { 
+            "Content-Type": "application/json"
+        },
+    })
+    return fetchedData;
 }
